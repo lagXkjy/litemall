@@ -17,25 +17,32 @@ Page({
     channel: [],
     coupon: []
   },
-
-  onShareAppMessage: function() {
+  //用户点击右上角转发
+  //监听用户点击页面内转发按钮（<button> 组件 open-type="share"）或右上角菜单“转发”按钮的行为，并自定义转发内容。
+  onShareAppMessage: function () {
     return {
+      //转发的标题
       title: 'litemall小程序商场',
       desc: '开源微信小程序商城',
+      //转发的路径
       path: '/pages/index/index'
     }
   },
-
+  //监听用户下拉刷新事件。
+  //需要在app.json的window选项中或页面配置中开启enablePullDownRefresh。
+  //可以通过wx.startPullDownRefresh触发下拉刷新，调用后触发下拉刷新动画，效果与用户手动下拉刷新一致。
+  //当处理完数据刷新后，wx.stopPullDownRefresh可以停止当前页面的下拉刷新
   onPullDownRefresh() {
+    //在当前页面显示导航条加载动画
     wx.showNavigationBarLoading() //在标题栏中显示加载
     this.getIndexData();
     wx.hideNavigationBarLoading() //完成停止加载
     wx.stopPullDownRefresh() //停止下拉刷新
   },
 
-  getIndexData: function() {
+  getIndexData: function () {
     let that = this;
-    util.request(api.IndexUrl).then(function(res) {
+    util.request(api.IndexUrl).then(function (res) {
       if (res.errno === 0) {
         that.setData({
           newGoods: res.data.newGoodsList,
@@ -51,11 +58,12 @@ Page({
       }
     });
   },
-  onLoad: function(options) {
+  onLoad: function (options) {
 
     // 页面初始化 options为页面跳转所带来的参数
     if (options.scene) {
       //这个scene的值存在则证明首页的开启来源于朋友圈分享的图,同时可以通过获取到的goodId的值跳转导航到对应的详情页
+      //decodeURIComponent() 函数可对 encodeURIComponent() 函数编码的 URI 进行解码
       var scene = decodeURIComponent(options.scene);
       console.log("scene:" + scene);
 
@@ -105,16 +113,16 @@ Page({
 
     this.getIndexData();
   },
-  onReady: function() {
+  onReady: function () {
     // 页面渲染完成
   },
-  onShow: function() {
+  onShow: function () {
     // 页面显示
   },
-  onHide: function() {
+  onHide: function () {
     // 页面隐藏
   },
-  onUnload: function() {
+  onUnload: function () {
     // 页面关闭
   },
   getCoupon(e) {
@@ -132,8 +140,7 @@ Page({
         wx.showToast({
           title: "领取成功"
         })
-      }
-      else{
+      } else {
         util.showErrorToast(res.errmsg);
       }
     })
