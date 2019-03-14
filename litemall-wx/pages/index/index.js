@@ -15,7 +15,8 @@ Page({
     floorGoods: [],
     banner: [],
     channel: [],
-    coupon: []
+    coupon: [],
+    goodsCount: 0
   },
   //用户点击右上角转发
   //监听用户点击页面内转发按钮（<button> 组件 open-type="share"）或右上角菜单“转发”按钮的行为，并自定义转发内容。
@@ -56,6 +57,11 @@ Page({
           coupon: res.data.couponList
         });
       }
+    });
+    util.request(api.GoodsCount).then(function (res) {
+      that.setData({
+        goodsCount: res.data.goodsCount
+      });
     });
   },
   onLoad: function (options) {
