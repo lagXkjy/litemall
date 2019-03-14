@@ -6,7 +6,12 @@
     </navigator>
   </view>
   <view class="catalog">
+    <!-- scroll-view 可滚动视图区域。 scroll-y="true	允许纵向滚动-->
+    <!-- https://developers.weixin.qq.com/miniprogram/dev/component/scroll-view.html -->
     <scroll-view class="nav" scroll-y="true">
+      <!-- https://developers.weixin.qq.com/miniprogram/dev/component/view.html -->
+      <!-- http://www.w3school.com.cn/tags/att_global_data.asp -->
+      <!-- bindtap，当用户点击该组件的时候会在该页面对应的Page中找到相应的事件处理函数 -->
       <view class="item {{ currentCategory.id == item.id ? 'active' : ''}}" wx:for="{{categoryList}}" wx:key="id" data-id="{{item.id}}" data-index="{{index}}" bindtap="switchCate">{{item.name}}</view>
     </scroll-view>
     <scroll-view class="cate" scroll-y="true">

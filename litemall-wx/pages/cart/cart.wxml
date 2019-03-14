@@ -23,6 +23,7 @@
         <view class="group-item">
           <view class="goods">
             <view class="item {{isEditCart ? 'edit' : ''}}" wx:for="{{cartGoods}}" wx:key="id">
+            <!-- bindtap，当用户点击该组件的时候会在该页面对应的Page中找到相应的事件处理函数。 -->
               <view class="checkbox {{item.checked ? 'checked' : ''}}" bindtap="checkedItem" data-item-index="{{index}}"></view>
               <view class="cart-goods">
                 <image class="img" src="{{item.picUrl}}"></image>

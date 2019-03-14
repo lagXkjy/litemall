@@ -66,6 +66,7 @@ Page({
     // 页面关闭
   },
   switchCate: function(event) {
+    // https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/event.html
     var that = this;
     var currentTarget = event.currentTarget;
     if (this.data.currentCategory.id == event.currentTarget.dataset.id) {

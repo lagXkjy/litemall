@@ -142,6 +142,7 @@ public class LitemallOrderService {
     public Map<Object, Object> orderInfo(Integer userId) {
         LitemallOrderExample example = new LitemallOrderExample();
         example.or().andUserIdEqualTo(userId).andDeletedEqualTo(false);
+        //查询需要返回的列
         List<LitemallOrder> orders = litemallOrderMapper.selectByExampleSelective(example, LitemallOrder.Column.orderStatus, LitemallOrder.Column.comments);
 
         int unpaid = 0;

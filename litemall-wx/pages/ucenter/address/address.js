@@ -29,8 +29,19 @@ Page({
   addressAddOrUpdate(event) {
     console.log(event)
 
+    // getCurrentPages()
+    // getCurrentPages() 函数用于获取当前页面栈的实例，以数组形式按栈的顺序给出，第一个元素为首页，最后一个元素为当前页面。
+    
+    // 注意：
+    
+    // 不要尝试修改页面栈，会导致路由以及页面状态错误。
+    // 不要在 App.onLaunch 的时候调用 getCurrentPages()，此时 page 还没有生成。
+
     //返回之前，先取出上一页对象，并设置addressId
     var pages = getCurrentPages();
+    console.log("--------------------------")
+    console.log(pages);
+    console.log("--------------------------")
     var prevPage = pages[pages.length - 2];
 
     if (prevPage.route == "pages/checkout/checkout") {
